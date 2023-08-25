@@ -12,7 +12,7 @@ $files=array();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Server</title>
+    <title>Server</title>
     <link rel="shortcut icon" href="./icons_index/server_icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -118,7 +118,7 @@ $files=array();
         margin-left: 20px;
         /* Creates space on the outside of the element */
         color: #FFF;
-        font-size: 3vw;
+        font-size: 2vw;
         font-family: 'Times New Roman';
         margin-top: 10px;
         margin-bottom: -6px;
@@ -270,7 +270,7 @@ $files=array();
             <input style="float: right; position:relative; margin-top:10px; margin-right:10px;" placeholder="Search" type="search" name="search" id="search_txt">
             <input type="submit" value="Submit" style="display: none;">
         </form>
-        <span  onclick="window.location.href='index.php';">  <span class="h1_text"><img src="./icons_index/server.png" width="30px" alt=""> Local Server</span> </span>
+        <span  onclick="window.location.href='index.php';">  <span class="h1_text"><img src="./icons_index/server.png" width="3%" alt="">Server</span> </span>
         <div style="background-color: #7A4069;">
             <div class="container">
                 <span class="tab_nav" onclick="window.location.href='./index.php'">Home</span> / 
