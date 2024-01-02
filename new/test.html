@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #list_body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .list_item {
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .list_item_icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 5px;
+        }
+
+        .list_item:hover {
+            background-color: #93939357;
+            border-radius: 20px;
+        }
+
+        .selected {
+            background-color: #93939357;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Files</h2>
+<div id="list_body">
+    <div class="list_item" onclick="handleItemClick(event, '/playground/PeerJS/Version_2')" ondblclick="getDirectory('/playground/PeerJS/Version_2')">
+        <img class="list_item_icon" src="./icons_index/folder.png">
+        <div title="Version_2"> Version_2</div>
+    </div>
+    <div class="list_item" onclick="handleItemClick(event, '/playground/PeerJS/Version_3')" ondblclick="getDirectory('/playground/PeerJS/Version_3')">
+        <img class="list_item_icon" src="./icons_index/folder.png">
+        <div title="Version_3"> Version_3</div>
+    </div>
+    <div class="list_item" onclick="handleItemClick(event, '/playground/PeerJS/index.html')" ondblclick="window.open('/playground/PeerJS/index.html', '_blank').focus()">
+        <img class="list_item_icon" src="./icons_index/html.png">
+        <div title="index.html"> index.html</div>
+    </div>
+    <div class="list_item" onclick="handleItemClick(event, '/playground/PeerJS/receive.html')" ondblclick="window.open('/playground/PeerJS/receive.html', '_blank').focus()">
+        <img class="list_item_icon" src="./icons_index/html.png">
+        <div title="receive.html"> receive.ht...</div>
+    </div>
+</div>
+
+<script>
+    let selectedItems = [];
+
+    function handleItemClick(event, path) {
+        if (event.ctrlKey || event.metaKey) {
+            // Ctrl+click to toggle selection
+            const index = selectedItems.indexOf(path);
+            if (index === -1) {
+                selectedItems.push(path);
+                event.currentTarget.classList.add('selected');
+            } else {
+                selectedItems.splice(index, 1);
+                event.currentTarget.classList.remove('selected');
+            }
+        } else {
+            // Single click to select only the clicked item
+            selectedItems = [path];
+            const selectedItemsElements = document.querySelectorAll('.list_item.selected');
+            selectedItemsElements.forEach(item => item.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+        console.log(selectedItems);
+    }
+
+
+</script>
+
+</body>
+</html>
