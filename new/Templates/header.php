@@ -1,6 +1,7 @@
 <style>
          body{
-            background-color:#e1e1e1;
+            /* background-color:#e1e1e1; */
+            background-color:#f0f0f0;
         }
 /*
         .header{
@@ -59,7 +60,7 @@
 
 
         #path_beardcrum{
-            background-color: #ebebeb;
+            background-color: #c7c7c7;
             padding-top: 15px;
             padding-bottom: 3px;
             padding-left: 20px;
@@ -82,48 +83,50 @@
 </style>
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand"  href="./">File Manager</a>
-    <button class="navbar-toggler" type="button"   aria-controls="navbarSupportedContent"  aria-label="Toggle navigation">
-      <!-- <span class="navbar-toggler-icon"></span> -->
-      <div id='menu_icon_open'  onclick="open_side_nav()">
-        <i class="fas fa-bars"> </i>
-      </div>
-      <div id='menu_icon_close' style="display:none;" onclick="close_side_nav()">
-        <i class="fas fa-times"> </i>
-      </div>
-    </button>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      
-      </ul>
-      <ul class="navbar-nav d-flex">
-            <div class="position-relative" style="cursor:pointer;">
-                <!-- <i class="fas fa-cog"> </i> -->
-                
+<div style="">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand"  href="./">File Manager</a>
+        <button class="navbar-toggler" type="button"   aria-controls="navbarSupportedContent"  aria-label="Toggle navigation">
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <div id='menu_icon_open'  onclick="open_side_nav()">
+            <i class="fas fa-bars"> </i>
+        </div>
+        <div id='menu_icon_close' style="display:none;" onclick="close_side_nav()">
+            <i class="fas fa-times"> </i>
+        </div>
+        </button>
+        <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        </ul>
+        <ul class="navbar-nav d-flex">
+                <div class="position-relative" style="cursor:pointer;">
+                    <!-- <i class="fas fa-cog"> </i> -->
+                    
+                </div>
+        </ul>
+
+
+        </div>
+    </div>
+
+    </nav>
+
+    <nav aria-label="breadcrumb" id="path_beardcrum">
+        <div class="row">
+            <div class="col-sm">
+                <ol class="breadcrumb" id="path_beardcrum_child"></ol>
             </div>
-      </ul>
-
-
-    </div>
-  </div>
-
-</nav>
-
-<nav aria-label="breadcrumb" id="path_beardcrum">
-    <div class="row">
-        <div class="col-sm">
-            <ol class="breadcrumb" id="path_beardcrum_child"></ol>
+            <!-- <div class="col-sm-1">
+            </div> -->
+            <div class="col-md-2">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" oninput="handleSearchInput(this)">
+                <input type="text" style="display:none;" class="form-control" id="folder_path" placeholder="Path">
+            </div>
         </div>
-        <!-- <div class="col-sm-1">
-        </div> -->
-        <div class="col-sm-2">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" oninput="handleSearchInput(this)">
-            <input type="text" style="display:none;" class="form-control" id="folder_path" placeholder="Path">
-        </div>
-    </div>
-</nav>
+    </nav>
+</div>
 
 <script>
     var sideNavBar = document.querySelector('.side_nav_bar');
@@ -145,7 +148,7 @@
 
 <div class="side_nav_bar">
     <div class="side_menu">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" style="overflow-y: scroll;height: 130px;">
             <li class="menu_items">
                 <a class="nav-link" onclick="getDirectory('');close_side_nav()">
                 <div class="menu_icon"><i class="fas fa-home"></i></div> Home
@@ -161,9 +164,11 @@
                     <div class="menu_icon"><i class="fas fa-plus-square"></i></div> Add Shortcut
                 </a>
             </li>
+        </ul>
             <hr>
-            <li class="menu_items function_disable">
-                <a class="nav-link" onclick="close_side_nav()">
+        <ul class="navbar-nav">
+            <li class="menu_items">
+                <a class="nav-link" onclick="close_side_nav()" data-bs-toggle="modal" data-bs-target="#uploadfilemodel">
                     <div class="menu_icon"><i class="fas fa-upload"></i></div> Upload
                 </a>
             </li>
@@ -172,8 +177,8 @@
                     <div class="menu_icon"><i class="fas fa-folder-plus"></i></div> New Folder
                 </a>
             </li>
-            <li class="menu_items function_disable">
-                <a class="nav-link" onclick="close_side_nav()">
+            <li class="menu_items">
+                <a class="nav-link" id="rename_btn_nav" style="pointer-events: none; color:grey;" onclick="close_side_nav()" data-bs-toggle="modal" data-bs-target="#renamemodel">
                     <div class="menu_icon"><i class="fas fa-feather"></i></div> Rename
                 </a>
             </li>
@@ -192,12 +197,14 @@
                     <div class="menu_icon"><i class="fas fa-paste"></i></div> paste
                 </a>
             </li>
-            <li class="menu_items function_disable">
-                <a class="nav-link" onclick="close_side_nav()">
+            <li class="menu_items">
+                <a class="nav-link" id="delete_btn_nav" style="pointer-events: none; color:grey;" onclick="close_side_nav()"  data-bs-toggle="modal" data-bs-target="#deletemodel">
                     <div class="menu_icon"><i class="fas fa-trash"></i></div> Delete
                 </a>
             </li>
+        </ul>
             <hr>
+        <ul class="navbar-nav">
             <li class="menu_items function_disable">
                 <a class="nav-link" onclick="close_side_nav()">
                     <div class="menu_icon"><i class="fas fa-book"></i></div> logs
@@ -229,7 +236,24 @@
                 </a>
             </li> -->
         </ul>
-
+        <hr>
+        <!-- <div style="padding-left:15px; padding-right:10px;">
+            <h6>Details</h6>
+            <table style="width:100%;">
+                <tr>
+                    <th>Name</th>
+                    <td style="text-align:right;" id="details_file_name">Home</td>
+                </tr>
+                <tr>
+                    <th>Size</th>
+                    <td style="text-align:right;" id="details_file_size">100MB</td>
+                </tr>
+                <tr>
+                    <th>No of files</th>
+                    <td style="text-align:right;" id="details_no_of_files">32</td>
+                </tr>
+            </table>
+        </div> -->
     </div>
 </div>
 <div class="container-fluid" style="margin-top:15px;">

@@ -1,0 +1,44 @@
+<div class="phppot-container tile-container text-center">
+    <h2>AJAX File Upload with Progress Bar using JavaScript</h2>
+    <input type="file" id="fileUpload" />
+    <br>
+    <br>
+    <button onclick="uploadFile()">Upload</button>
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <br>
+    <div id="uploadStatus"></div>
+</div>
+
+<script>
+    function uploadFile() {
+        var fileInput = document.getElementById('fileUpload');
+        var file = fileInput.files[0];
+
+        if (file) {
+            var formData = new FormData();
+            formData.append('path', '../../../Yo/Yoyo/Baba');
+            formData.append('file', file);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.upload.addEventListener('progress', function (event) {
+                if (event.lengthComputable) {
+                    var percent = Math.round((event.loaded / event.total) * 100);
+                    var progressBar = document.getElementById('progressBar');
+                    progressBar.style.width = percent + '%';
+                    progressBar.innerHTML = percent + '%';
+                }
+            });
+
+            xhr.addEventListener('load', function (event) {
+                var uploadStatus = document.getElementById('uploadStatus');
+                uploadStatus.innerHTML = event.target.responseText;
+            });
+
+            xhr.open('POST', './data_handle/upload_file.php', true);
+            xhr.send(formData);
+        }
+    }
+</script>

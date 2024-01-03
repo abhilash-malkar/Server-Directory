@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 $directory = '../../..';
 
@@ -17,7 +17,7 @@ if($_REQUEST){
                 $response['message'] = "Folder created successfully";
             } else {
                 $response['success'] = false;
-                $response['message'] = "Failed to create folder";
+                $response['message'] = "Failed to create folder or Permission denied";
             }
         } else {
             $response['success'] = false;

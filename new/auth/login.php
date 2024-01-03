@@ -37,7 +37,7 @@ if($_REQUEST){
     <div class="container">
         <div class="row mt-5">
             <div class="col"></div>
-            <div class="col">
+            <div class="col-md">
                 <h4>Login</h4>
                 <form action="" method="post">
                     <div class="mb-3">
@@ -50,7 +50,7 @@ if($_REQUEST){
                     </div>
                     <span style="color:red;"><?php echo $error;?></span>
                     <div class="mb-3 mt-3">
-                        <input type="submit" class="btn btn-secondary btn-sm" value="Login" id="password_id" placeholder="XXXXXXXXX">
+                        <input type="submit" class="btn btn-secondary btn-sm" value="Login">
                     </div>
                 </form>
             </div>
